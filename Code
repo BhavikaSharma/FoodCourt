@@ -1,0 +1,2100 @@
+//Name: Bhavika Sharma
+//Date: Friday, October 26, 2012
+//Purpose: Game involving the character at a food court. Players will be answering questions to receive a variety of food.
+
+//necessary for extra features
+import javax.swing.*;
+import java.util.*;
+import java.text.*;
+
+
+public class foodCourt
+{
+    public static void main (String args[])
+    {
+        new foodCourt ();
+    }
+
+
+    int points = 0;
+    int burgerpt = 0;
+    int sandwichpt = 0;
+    int dessertpt = 0;
+    int coldDrinkpt = 0;
+    int hotDrinkpt = 0;
+    int pizzapt = 0;
+    int souppt = 0;
+    int friespt = 0;
+
+    public foodCourt ()
+    {
+        Introduction ();
+    }
+
+
+    //creates a table of numbers that will be used for questions in soup method
+    //number multiply by 5 within a column and 4 within a row
+    public void multiply ()
+    {
+
+        for (int i = 1 ; i <= 15000 ; i *= 5)
+        {
+
+            int counter = 1;
+            for (counter = 1 ; counter <= 15000 ; counter *= 4)
+            {
+                int z = (i * counter);
+                System.out.print (z + "\t");
+
+            }
+            System.out.println ("");
+            counter++;
+        }
+    }
+
+
+    //necessary for adding pictures in dialogue boxes
+    protected static ImageIcon createImageIcon (String path)
+    {
+
+        java.net.URL imgURL = foodCourt.class.getResource (path);
+        if (imgURL != null)
+        {
+            return new ImageIcon (imgURL);
+        }
+
+
+        else
+        {
+            System.err.println ("Couldn't find file: " + path);
+            return null;
+        }
+    }
+
+
+    public void Introduction ()
+    {
+
+        //asks name in a dialogue box
+        /*   String playerName = JOptionPane.showInputDialog ("Please enter your name");
+           System.out.println ("Hi " + playerName + ", you will be playing..."); */
+
+        //title from http://ascii.mastervb.net/
+        System.out.println ("\t  _______  _______  _______  ______          _______  _______  ___ ___  _______  _______ ");
+        System.out.println ("\t |   _   ||   _   ||   _   ||   _  \\        |   _   ||   _   ||   Y   ||   _   \\|       |");
+        System.out.println ("\t |.  1___||.  |   ||.  |   ||.  |   \\       |.  1___||.  |   ||.  |   ||.  l   /|.|   | |");
+        System.out.println ("\t |.  __)  |.  |   ||.  |   ||.  |    \\      |.  |___ |.  |   ||.  |   ||.  _   1`-|.  |-'");
+        System.out.println ("\t |:  |    |:  1   ||:  1   ||:  1    /      |:  1   ||:  1   ||:  1   ||:  |   |  |:  |  ");
+        System.out.println ("\t |::.|    |::.. . ||::.. . ||::.. . /       |::.. . ||::.. . ||::.. . ||::.|:. |  |::.|  ");
+        System.out.println ("\t `---'    `-------'`-------'`------'        `-------'`-------'`-------'`--- ---'  `---'  ");
+        System.out.println ("");
+
+ 
+
+        /*     //inserts date and time
+            SimpleDateFormat dateFormat = new SimpleDateFormat ("yyyy-MMM-dd (HH:mm:ss)");
+            dateFormat.setTimeZone (TimeZone.getTimeZone ("EST5EDT"));
+            printSlow ("It is:\n" + dateFormat.format (new Date ()));
+
+            //Show an error dialog that displays the message, 'alert':
+            {
+        JOptionPane.showMessageDialog(null, "Remember to maximize your screen right now!", "Reminder!",
+        JOptionPane.ERROR_MESSAGE);
+        }
+
+
+          //shows characters, picture from http://www.zcool.com.cn/gfx/ZMjE4NTUy.html
+            System.out.println ("\n" + playerName + ", it's time to pick your character.");
+             printSlow ("Remember the number of the character you like.");
+             JOptionPane.showMessageDialog (null, createImageIcon ("characters.jpg"), "Character", JOptionPane.INFORMATION_MESSAGE);
+             character ();
+
+        //indroducestheme of game
+          System.out.println ("\n\n" + playerName + ", you have had a long day at the mall...");
+          //pauses for effect
+          try
+          {
+              Thread.sleep (500);
+          }
+          catch (InterruptedException m)
+          {
+              ;
+          }
+
+
+          //picture from http://www.visitingdc.com/virginia/tysons-corner-mall-address.htm
+          JOptionPane.showMessageDialog (null, createImageIcon ("shoppingmall.jpg"), "Shopping Mall", JOptionPane.INFORMATION_MESSAGE);
+          try
+          {
+              Thread.sleep (100);
+          }
+          catch (InterruptedException m)
+          {
+              ;
+          }
+
+          System.out.println ("Aren't you hungry?");
+          pause ();
+        */
+        //asks if user wants to play
+        char hungry = IBIO.inputChar ("Do you want to eat? (y/n) ");
+        if (hungry == 'y' || hungry == 'Y')
+            Instructions ();
+        else if (hungry == 'n' || hungry == 'N')
+        {
+            /*         System.out.println ("\nOkay, have fun shopping, " + playerName + "!");
+                     //prints 'Goodbye' in a dialogue box
+                     JOptionPane.showMessageDialog (null, "\tG O O D B Y E !!!", "Bye!",
+                             JOptionPane.INFORMATION_MESSAGE); */
+        }
+        else
+        {
+            //Show an error dialog that displays the message, 'Error':
+            JOptionPane.showMessageDialog (null, "Error", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+
+            System.out.println ("\nSorry that's not a choice.");
+            hungry = IBIO.inputChar ("Do you want food? (y/n) ");
+            if (hungry == 'y' || hungry == 'Y')
+                Instructions ();
+            /*       else
+                       System.out.println ("\nOkay, have fun shopping, " + playerName + "!");
+                   JOptionPane.showMessageDialog (null, "\tG O O D B Y E !!!", "Bye!",
+                           JOptionPane.INFORMATION_MESSAGE);
+                           */
+        }
+    }
+
+
+    //pauses for effect
+    //written as a method to avoid repeating code
+    public void pause ()
+    {
+        try
+        {
+            Thread.sleep (1000);
+        }
+        catch (InterruptedException m)
+        {
+            ;
+        }
+    }
+
+
+    //continues introduction, more specifically, gives instructions
+    public void Instructions ()
+    {
+        //Show a warning dialog with the options OK, CANCEL, title 'Warning',
+        // and message 'Click OK to continue':
+
+        Object[] options = {"What Happened?"};
+        JOptionPane.showOptionDialog (null, "OH NO!", "Warning",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+                null, options, options [0]);
+
+        System.out.println ("\nThe snackbars in the food court have just closed. \nThe cashiers said they will open up for you if you answer some questions...");
+        pause ();
+        //picture of mall from http://es.wikipedia.org/wiki/Archivo:Southlands_Boulevarde_Food_Court.jpg
+        JOptionPane.showMessageDialog (null, createImageIcon ("foodcourt.jpg"), "Food Court", JOptionPane.INFORMATION_MESSAGE);
+        //confirms if user wants to play
+        char hungry = IBIO.inputChar ("Do you still want food? (y/n) ");
+        if (hungry == 'y' || hungry == 'Y')
+        {
+            option ();
+        }
+
+        else if (hungry == 'n' || hungry == 'N')
+        {
+            System.out.println ("\nOkay, have fun shopping!");
+            //prints 'Goodbye' in a dialogue box
+            JOptionPane.showMessageDialog (null, "\tG O O D B Y E !!!", "Bye!",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
+        else
+        {
+            //Show an error dialog that displays the message, 'Error':
+            JOptionPane.showMessageDialog (null, "Error", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            System.out.println ("\nSorry that's not a choice.");
+            hungry = IBIO.inputChar ("Do you want food? (y/n) ");
+            if (hungry == 'y' || hungry == 'Y')
+                option ();
+            else
+                System.out.println ("\nOkay, have fun shopping!");
+            JOptionPane.showMessageDialog (null, "\tG O O D B Y E !!!", "Bye!",
+                    JOptionPane.INFORMATION_MESSAGE);
+
+        }
+    }
+
+
+    //asks what food (method) user wants to go to
+    //adds up points from each method when user is done
+    public void option ()
+    {
+        int option = 1;
+        //continues asking user question until answer is 9 (done)
+        while (option != 9)
+        {
+            //from http://www.chris.com/ascii/index.php?art=objects/books (editted)
+            System.out.println ("\nWhat do you want to eat?\nThe points for each individual section will be calculated seperately.\nThey will be added up at the end when you are finished eating.\nDon't pick an option twice!");
+            pause ();
+            System.out.println ("");
+            System.out.println ("\t      _____________________________________________________");
+            System.out.println ("\t  .-/|         ~~**~~         \\ /            ~~**~~        |\\-. ");
+            System.out.println ("\t  ||||                         :                           ||||");
+            System.out.println ("\t  ||||                         :                           ||||");
+            System.out.println ("\t  |||| ,__ __                  :        1.   Burger        ||||");
+            System.out.println ("\t  ||||/|  |  |                 :        2.   Sandwich      ||||");
+            System.out.println ("\t  |||| |  |  |   _    _        :        3.   Fries         ||||");
+            System.out.println ("\t  |||| |  |  |  |/  |/ | |   | :        4.   Cold Drink    ||||");
+            System.out.println ("\t  |||| |  |  |  |__ |  |  \\_/|_:        5.   Hot Drink     ||||");
+            System.out.println ("\t  ||||                         :        6.   Dessert       ||||");
+            System.out.println ("\t  ||||                         :        7.   Pizza         ||||");
+            System.out.println ("\t  ||||                         :        8.   Soup          ||||");
+            System.out.println ("\t  ||||                         :        9.   Done          ||||");
+            System.out.println ("\t  ||||                         :                           ||||");
+            System.out.println ("\t  ||||                         :                           ||||");
+            System.out.println ("\t  ||||________________________ : __________________________||||");
+            System.out.println ("\t  ||/=========================\\:/===========================\\||");
+            System.out.println ("\t  `--------------------------~___~--------------------------''");
+
+
+            option = IBIO.inputInt ("\nEnter a number between 1 and 9 >>\n");
+            pause ();
+            switch (option)
+            {
+                case 1:
+                    burgerpt = burger (points);
+                    points += burgerpt;
+                    break;
+                case 2:
+                    sandwichpt = sandwich (points);
+                    points += sandwichpt;
+                    break;
+                case 3:
+                    friespt = fries (points);
+                    points += friespt;
+                    break;
+                case 4:
+                    coldDrinkpt = coldDrink (points);
+                    points += coldDrinkpt;
+                    break;
+                case 5:
+                    hotDrinkpt = hotDrink (points);
+                    points += hotDrinkpt;
+                    break;
+                case 6:
+                    dessertpt = dessert (points);
+                    points += dessertpt;
+                    break;
+                case 7:
+                    points += pizza (points);
+                    break;
+                case 8:
+                    points += soup (points);
+                    break;
+
+                    //ends loop
+                case 9:
+                    //prints out prompt according to points
+                    if (burgerpt > 6)
+                        System.out.println ("You received a burger.");
+                    if (sandwichpt (points) > 6)
+                        System.out.println ("You received a sandwich.");
+                    if (fries (points) > 6)
+                        System.out.println ("You received fries.");
+                    if (coldDrink (points) > 6)
+                        System.out.println ("You received a cold drink.");
+                    if (hotDrink (points) > 10)
+                        System.out.println ("You received a hot drink.");
+                    if (dessert (points) > 6)
+                        System.out.println ("You received a dessert.");
+                    if (pizza (points) > 5)
+                        System.out.println ("You received a slice of pizza.");
+                    if (soup (points) > 2)
+                        System.out.println ("You received soup.");
+
+                    System.out.println ("\nYou have a total of " + points + " points.");
+                    if (points > 40)
+                        System.out.println ("\nYOU PASSED WITH FLYING COLOURS!!!");
+                    else if (points > 10)
+                        System.out.println ("\nYOU NEED TO WORK HARDER!");
+                    else if (points > 0)
+                        System.out.println ("\nYOU BARELY RECEIVED A POSITIVE SCORE!");
+                    else
+                        System.out.println ("\nI DIDN'T KNOW ANYONE COULD HAVE A SCORE THIS TERRIBLE!!!");
+
+                    //asks if user wants to play again in a dialog box (pull down menu)
+                    String[] again = {"Play Again", "End Game", };
+                    String selectedValue = (String) JOptionPane.showInputDialog (null,
+                            "You have finished playing!", "Again?", JOptionPane.INFORMATION_MESSAGE, null,
+                            again, again [0]);
+
+                    if (again.equals ("Play Again"))
+                    {
+                        printSlow ("\nI'm 'relish'-ing the fact that you liked my game!\nYou should try some more 'pi'!");
+                        Introduction ();
+                    }
+
+                    //ends game
+                    else
+                    {
+                        printSlow ("\nOkay, have fun shopping!\nI 'cannoli' imagine what you're going to buy...");
+                        printSlow ("I'm glad you're not hungry anymore,\nI already 'mustard' up all the strength that I had so I could to feed you today!");
+                        //prints 'Goodbye' in a dialogue box
+                        JOptionPane.showMessageDialog (null, "\tG O O D B Y E !!!", "Bye!",
+                                JOptionPane.INFORMATION_MESSAGE);
+                        break;
+                    }
+                    break;
+
+            }
+        }
+    }
+
+ 
+
+    //tells user to choose a character
+    public void character ()
+    {
+
+        int option = IBIO.inputInt ("\nEnter your choice character>>\n");
+        System.out.print ("You picked: ");
+        pause ();
+        //opens dialogue box with picture of character corrsponding to what user picks
+        //all pictures from http://www.zcool.com.cn/gfx/ZMjE4NTUy.html (editted)
+        switch (option)
+        {
+            case 1:
+                JOptionPane.showMessageDialog (null, createImageIcon ("jake.jpg"), "Jake", JOptionPane.INFORMATION_MESSAGE);
+                break;
+            case 2:
+                JOptionPane.showMessageDialog (null, createImageIcon ("sarah.jpg"), "Sarah", JOptionPane.INFORMATION_MESSAGE);
+                break;
+            case 3:
+                JOptionPane.showMessageDialog (null, createImageIcon ("aaron.jpg"), "Aaron", JOptionPane.INFORMATION_MESSAGE);
+                break;
+            case 4:
+                JOptionPane.showMessageDialog (null, createImageIcon ("jessica.jpg"), "Jessica", JOptionPane.INFORMATION_MESSAGE);
+                break;
+            case 5:
+                JOptionPane.showMessageDialog (null, createImageIcon ("derek.jpg"), "Derek", JOptionPane.INFORMATION_MESSAGE);
+                break;
+            case 6:
+                JOptionPane.showMessageDialog (null, createImageIcon ("brooke.jpg"), "Brooke", JOptionPane.INFORMATION_MESSAGE);
+                break;
+        }
+    }
+
+
+    //makes letters print slowly (pauses after each letter)
+    public void printSlow (String s)
+    {
+        for (int i = 0 ; i < s.length () ; i++)
+        {
+            System.out.print ("" + s.charAt (i));
+            //sleep for a bit after printing a letter
+            try
+            {
+                Thread.sleep (100);
+            }
+            catch (InterruptedException m)
+            {
+                ;
+            }
+        }
+
+
+        System.out.println ();
+    }
+
+
+    //user picked cold drinks from menu (option method)
+    //asks questions about cold drinks
+    //asks for a word (String variable)
+    //keeps track of score for this section (therefore score is reset) and returns it at the end (as an integer)
+    public int coldDrink (int score)
+    {
+        score = 0;
+
+        System.out.println ("\n\t\t\t***You picked***");
+        coldDrinksName ();
+
+        System.out.println ("\n\nHopefully, you're going to eat food as well as drink...\nHere's a 'pop' quiz!\n");
+
+        String ans1 = IBIO.inputString ("What colour is most predominant on a coke can?\n");
+        if (ans1.equalsIgnoreCase ("red"))
+        {
+            score++;
+            System.out.println ("\nThat's right. \nYou gained a point. Your score is now: " + score);
+        }
+
+
+        else
+        {
+            System.out.println ("\nThat's wrong, try another question.");
+            score--;
+            System.out.println ("You lost a point. Your score is now: " + score);
+            System.out.println ("The correct answer was red.");
+        }
+
+
+        String ans2 = IBIO.inputString ("\nThe second question is pretty easy. \nUnscramble this drink: unmtinao ewd\n");
+        if (ans2.equalsIgnoreCase ("mountain dew"))
+        {
+            score += 2;
+            System.out.println ("\nThat's right. \nYou gained 2 point. Your score is now: " + score);
+        }
+
+
+        else
+        {
+            System.out.println ("\nThat's wrong, try another question.");
+            score--;
+            System.out.println ("You lost a point. Your score is now: " + score);
+            System.out.println ("The correct answer was mountain dew");
+        }
+
+
+        String ans3 = IBIO.inputString ("\nThis question is a little harder.\nComplete the sentence: Could have had a...\n");
+        if (ans3.equalsIgnoreCase ("v8"))
+        {
+            score += 3;
+            System.out.println ("\nThat's right. \nYou gained 3 point. Your score is now: " + score);
+        }
+
+
+        else
+        {
+            System.out.println ("\nThat's wrong, try another question");
+            score--;
+            System.out.println ("You lost a point. Your score is now: " + score);
+            System.out.println ("The correct answer was V8.");
+        }
+
+
+        String ans4 = IBIO.inputString ("\nYou're almost finished.\nI am a drink served during Christmas time, generally served cold.\n");
+        if (ans4.equalsIgnoreCase ("eggnog") || ans4.equalsIgnoreCase ("egg nog"))
+        {
+            score += 4;
+            System.out.println ("\nThat's right. \nYou gained 4 point. Your score is now: " + score);
+        }
+
+
+        else
+        {
+            System.out.println ("\nThat's wrong, try another question.");
+            score--;
+            System.out.println ("You lost a point. Your score is now: " + score);
+            System.out.println ("The correct answer was eggnog.");
+        }
+
+
+        String ans5 = IBIO.inputString ("\nYour thirst is going to soon be quenched.\nWhat am I? A drink? A medic? An archelogist? A spice?\n");
+        if (ans5.equalsIgnoreCase ("Dr. Pepper") || ans5.equalsIgnoreCase ("dr pepper"))
+        {
+            score += 5;
+            System.out.println ("\nThat's right. \nYou gained 5 point. Your total score for cold drinks is: " + score);
+        }
+
+
+        else
+        {
+            System.out.println ("\nThat's wrong, try another section.");
+            score--;
+            System.out.println ("You lost a point. Your total score for cold drinks is: " + score);
+            System.out.println ("The correct answer was Dr. Pepper.");
+        }
+
+        //prints prompts according to score
+        if (score > 11)
+            printSlow ("\nYou did very well!");
+        if (score > 6)
+        {
+            printSlow ("\nYou have gained enough points to receive a cold drink!");
+            //prints picture of pop
+            coldDrinkpic ();
+        }
+
+
+        else
+            System.out.println ("\nSorry, you have not gained enough points to receive a cold drink! >_<\n\n\n\n");
+        pause ();
+
+        return score;
+
+    }
+
+
+    //user picked fries from menu (option method)
+    //asks questions about fries
+    //asks for a true (t) or false (f) (char variable)
+    //keeps track of score for this section (therefore score is reset) and returns it at the end (as an integer)
+    public int fries (int score)
+    {
+        score = 0;
+
+        System.out.println ("\n\t\t\t***You picked***");
+        friesName ();
+
+        System.out.println ("\n\nThis is not going to be enough to fill you up...\nTry not to get 'fried' in this quiz!\n");
+
+        System.out.println ("\nThe following are all true or false questions\nAnswer 't' for true and 'f' for false");
+
+        char ans1 = IBIO.inputChar ("\nPoutine is fries with ketchcup and cheese\n");
+        while (ans1 != 'f' && ans1 != 't')
+        {
+            {
+                //Show an error dialog that displays the message, 'That's NOT EVEN AN OPTION!':
+                JOptionPane.showMessageDialog (null, "That's NOT EVEN AN OPTION!", "Alert",
+                        JOptionPane.ERROR_MESSAGE);
+                score--;
+                System.out.println ("You lost a point. Your score is now: " + score);
+            }
+            ans1 = IBIO.inputChar ("\nPoutine is fries with ketchcup and cheese\n");
+        }
+        if (ans1 == ('f'))
+        {
+            score++;
+            System.out.println ("\nThat's right. \nYou gained a point. Your score is now: " + score);
+        }
+
+        else
+        {
+            System.out.println ("\nThat's wrong, try another question.");
+            score--;
+            System.out.println ("You lost a point. Your score is now: " + score);
+            System.out.println ("The correct answer was 'f', they are fries with gravy and cheese.");
+        }
+
+
+        char ans2 = IBIO.inputChar ("\nFries are called 'crisps' in England\n");
+        while (ans2 != 'f' && ans2 != 't')
+        {
+            {
+                JOptionPane.showMessageDialog (null, "That's NOT EVEN AN OPTION!", "Alert",
+                        JOptionPane.ERROR_MESSAGE);
+                score--;
+                System.out.println ("You lost a point. Your score is now: " + score);
+            }
+            ans2 = IBIO.inputChar ("\nFries are called 'crisps' in England\n");
+        }
+
+        if (ans2 == ('f'))
+        {
+            score += 2;
+            System.out.println ("\nThat's right. \nYou gained 2 point. Your score is now: " + score);
+        }
+
+        else
+        {
+            System.out.println ("\nThat's wrong, try another question.");
+            score--;
+            System.out.println ("You lost a point. Your score is now: " + score);
+            System.out.println ("The correct answer was 'f', they are called 'chips'.");
+        }
+
+
+        char ans3 = IBIO.inputChar ("\nMcCain is a popular frozen fries brand.\n");
+        while (ans3 != 'f' && ans3 != 't')
+        {
+            {
+                JOptionPane.showMessageDialog (null, "That's NOT EVEN AN OPTION!", "Alert",
+                        JOptionPane.ERROR_MESSAGE);
+                score--;
+                System.out.println ("You lost a point. Your score is now: " + score);
+            }
+            ans3 = IBIO.inputChar ("\nMcCain is a popular frozen fries brand.\n");
+        }
+
+        if (ans3 == ('t'))
+        {
+            score += 3;
+            System.out.println ("\nThat's right. \nYou gained 3 point. Your score is now: " + score);
+        }
+
+        else
+        {
+            System.out.println ("\nThat's wrong, try another question.")
+                ;
+            score--;
+            System.out.println ("You lost a point. Your score is now: " + score);
+            System.out.println ("The correct answer was 't'.");
+        }
+
+        char ans4 = IBIO.inputChar ("\nFrench fries are from France.\n");
+        while (ans4 != 'f' && ans4 != 't')
+        {
+            {
+                JOptionPane.showMessageDialog (null, "That's NOT EVEN AN OPTION!", "Alert",
+                        JOptionPane.ERROR_MESSAGE);
+                score--;
+                System.out.println ("You lost a point. Your score is now: " + score);
+            }
+            ans4 = IBIO.inputChar ("\nFrench fries are from France.\n");
+        }
+
+        if (ans4 == ('f'))
+        {
+            score += 4;
+            System.out.println ("\nThat's right. \nYou gained 4 point. Your score is now: " + score);
+        }
+
+        else
+        {
+            System.out.println ("\nThat's wrong, try another question.");
+            score--;
+            System.out.println ("You lost a point. Your score is now: " + score);
+            System.out.println ("The correct answer was 'f', they are from Belgium.");
+        }
+
+        char ans5 = IBIO.inputChar ("\nSpiralled fries are known as 'tornado fries'.\n");
+        while (ans5 != 'f' && ans5 != 't')
+        {
+            {
+                JOptionPane.showMessageDialog (null, "That's NOT EVEN AN OPTION!", "Alert",
+                        JOptionPane.ERROR_MESSAGE);
+                score--;
+                System.out.println ("You lost a point. Your score is now: " + score);
+            }
+            ans5 = IBIO.inputChar ("\nSpiralled fries are known as 'tornado fries'.\n");
+        }
+        if (ans5 == ('t'))
+        {
+            score += 5;
+            System.out.println ("\nThat's right. \nYou gained 5 point. Your total score for fries is: " + score);
+        }
+
+        else
+        {
+            System.out.println ("\nThat's wrong, try another section.");
+            score--;
+            System.out.println ("You lost a point. Your total score for fries is: " + score);
+            System.out.println ("The correct answer was 't'.");
+        }
+
+
+        //prints prompts according to score
+        if (score > 11)
+            printSlow ("\nYou did very well!");
+        if (score > 6)
+        {
+            printSlow ("\nYou have gained enough points to receive fries!");
+            //prints picture of fries
+            friespic ();
+        }
+
+
+        else
+            System.out.println ("\nSorry, you have not gained enough points to receive fries! >_<\n\n\n\n");
+        pause ();
+        return score;
+
+    }
+
+
+    //user picked sandwich from menu (option method)
+    //asks math questions
+    //asks for an integer (int variable)
+    //keeps track of score for this section (therefore score is reset) and returns it at the end (as an integer)
+    public int sandwich (int score)
+    {
+        score = 0;
+
+        System.out.println ("\n\t\t\t\t***You picked***");
+        sandwichName ();
+
+        System.out.println ("\n\nDisregard all decimal places when writing your answers.\nI hope the food tastes better than the 'sand which' are served in in other stores...\n");
+
+        int ans1 = IBIO.inputInt ("(5+5+5+5)/4\n");
+        if (ans1 == (5 + 5 + 5 + 5) / 4)
+        {
+            score++;
+            System.out.println ("\nThat's right. \nYou gained a point. Your score is now: " + score);
+        }
+
+
+        else
+        {
+            System.out.println ("\nThat's wrong, try another question.");
+            score--;
+            System.out.println ("You lost a point. Your score is now: " + score);
+            System.out.println ("The correct answer was 5");
+        }
+
+
+        int ans2 = IBIO.inputInt ("\n(7*8)-11+5\n");
+        if (ans2 == ((7 * 8) - 11 + 5))
+        {
+            score += 2;
+            System.out.println ("\nThat's right. \nYou gained 2 point. Your score is now: " + score);
+        }
+
+
+        else
+        {
+            System.out.println ("\nThat's wrong, try another question.");
+            score--;
+            System.out.println ("You lost a point. Your score is now: " + score);
+            System.out.println ("The correct answer was 50");
+        }
+
+        //uses random integers, therefore changing up the question
+        int random = (int) (Math.random () * 10) + 0;
+        int ans3 = IBIO.inputInt ("\nYou should know this from learning about binary numbers.\nWhat is 2^" + random + "?\n");
+
+        if (ans3 == (Math.pow (2, random)))
+        {
+            score += 3;
+            System.out.println ("\nThat's right. \nYou gained 3 point. Your score is now: " + score);
+        }
+
+
+        else
+        {
+            System.out.println ("\nThat's wrong, try another question.");
+            score--;
+            System.out.println ("You lost a point. Your score is now: " + score);
+            System.out.println ("The correct answer was " + (Math.pow (2, random)));
+        }
+
+        random = (int) (Math.random () * 100) + 1;
+        int ans4 = IBIO.inputInt ("\nWhat remanider do you get when you divide 100 by " + random + "?\n");
+        if (ans4 == 100 % random)
+        {
+            score += 4;
+            System.out.println ("\nThat's right. \nYou gained 4 point. Your score is now: " + score);
+        }
+
+
+        else
+        {
+            System.out.println ("\nThat's wrong, try another question.");
+            score--;
+            System.out.println ("You lost a point. Your score is now: " + score);
+            System.out.println ("The correct answer was " + (100 % random));
+        }
+
+
+        random = (int) (Math.random () * 10) + 3;
+        int ans5 = IBIO.inputInt ("\nWhat is 7^" + random + "+7?\n");
+        if (ans5 == (Math.pow (7, random)) + 7)
+        {
+            score += 5;
+            System.out.println ("\nThat's right. \nYou gained 5 point. Your total score for sandwich is: " + score);
+        }
+
+
+        else
+        {
+            System.out.println ("\nThat's wrong, try another section.");
+            score--;
+            System.out.println ("You lost a point. Your total score for sandwich is: " + score);
+            System.out.println ("The correct answer was " + (Math.pow (7, random) + 7));
+        }
+
+        //prints prompts according to score
+        if (score > 11)
+            printSlow ("\nYou did very well!");
+        if (score > 6)
+        {
+            printSlow ("\nYou have gained enough points to receive a sandwich!");
+            //prints picture of a sandwich
+            sandwichpic ();
+        }
+
+
+        else
+            System.out.println ("\nSorry, you have not gained enough points to receive a sandwich! >_<\n\n\n\n");
+        pause ();
+        return score;
+    }
+
+
+    //rounds a number (num) to a specific number (digit) of decimal places
+    public double round (double num, int digit)
+    {
+        double num2 = num * Math.pow (10, digit);
+        double num3 = (num2 - ((int) num2)) * 10;
+        num2 = ((int) num2);
+        if (num3 >= 5)
+            num2++;
+        return num2 /= Math.pow (10, digit);
+    }
+
+ 
+
+    //user picked burger from menu (option method)
+    //asks math questions
+    //asks for a 2 decimal places (double variable)
+    //keeps track of score for this section (therefore score is reset) and returns it at the end (as an integer)
+    public int burger (int score)
+    {
+        score = 0;
+
+        System.out.println ("\n\t\t\t\t***You picked***");
+        burgerName ();
+
+        System.out.println ("\n\nAre you ready for harder questions?\nRound all answers to 2 decimal places when writing your answers.\nWe sell hamburgers, chicken burgers and cheese burgers (all the regulars), and for the vegetarians we have 'de-calf'...\n\n");
+
+        int digit = 2;
+
+        double answer = ((Math.pow (25, 0.5)));
+        double ans1 = IBIO.inputDouble ("What is 25^(1/2)?\n");
+        double r = round (answer, digit);
+        if (ans1 == r)
+        {
+            score++;
+            System.out.println ("\nThat's right. \nYou gained a point. Your score is now: " + score);
+        }
+
+
+        else
+        {
+            System.out.println ("\nThat's wrong, try another question.");
+            score--;
+            System.out.println ("You lost a point. Your score is now: " + score);
+            System.out.println ("The correct answer was " + r);
+        }
+
+        //uses a random decimal number, therefore changing up the question each time
+        double random = (double) (Math.random () * 10) + 0;
+        //rounds random decimal number to two decimal places
+        double rRandom = round (random, digit);
+        answer = ((Math.pow (rRandom, 3)));
+        double ans2 = IBIO.inputDouble ("\nWhat is the volume of a cube with the width of " + rRandom + "?\n");
+        r = round (answer, digit);
+        if (ans2 == r)
+        {
+            score += 2;
+            System.out.println ("\nThat's right. \nYou gained 2 point. Your score is now: " + score);
+        }
+
+
+        else
+        {
+            System.out.println ("\nThat's wrong, try another question.");
+            score--;
+            System.out.println ("You lost a point. Your score is now: " + score);
+            System.out.println ("The correct answer was " + r);
+        }
+
+        //uses a random integer, therefore changing up the question each time
+        int random1 = (int) (Math.random () * 10) + 0;
+        answer = ((Math.PI) * (Math.pow ((random1 * 0.5), 2)));
+        double ans3 = IBIO.inputDouble ("\nWhat is the area of a circle with the diameter of " + random1 + " cm?\n");
+        r = round (answer, digit);
+
+        if (ans3 == r)
+        {
+            score += 3;
+            System.out.println ("\nThat's right. \nYou gained 3 point. Your score is now: " + score);
+        }
+
+
+        else
+        {
+            System.out.println ("\nThat's wrong, try another question.");
+            score--;
+            System.out.println ("You lost a point. Your score is now: " + score);
+            System.out.println ("The correct answer was " + r);
+        }
+
+
+        random = (double) (Math.random () * 10) + 0;
+        double height = (double) (Math.random () * 10) + 0;
+        rRandom = round (random, digit);
+        double hRandom = round (height, digit);
+        answer = ((Math.PI) * (Math.pow ((rRandom), 2)) * (hRandom)) / 3;
+        double ans4 = IBIO.inputDouble ("\nWhat is the volume of a cone with the radius of " + rRandom + " and a height of " + hRandom + "?\n");
+        r = round (answer, digit);
+        if (ans4 == r)
+        {
+            score += 4;
+            System.out.println ("\nThat's right. \nYou gained 4 point. Your score is now: " + score);
+        }
+
+
+        else
+        {
+            System.out.println ("\nThat's wrong, try another question.");
+            score--;
+            System.out.println ("You lost a point. Your score is now: " + score);
+            System.out.println ("The correct answer was " + r);
+        }
+
+
+        printSlow ("\nYou must answer this question correctly to proceed.");
+        random1 = (int) (Math.random () * 1000) + 101;
+        int random2 = (int) (Math.random () * 100) + 101;
+        answer = ((Math.pow (random1, 0.5)) + ((Math.pow (random2, 0.5))));
+        double ans5 = IBIO.inputDouble ("\nWhat is " + random1 + "^(1/2) + " + random2 + "^(1/2)?\n");
+        r = round (answer, digit);
+        if (ans5 == r)
+        {
+            score += 5;
+            System.out.println ("\nThat's right. \nYou gained 5 point. Your score is now: " + score);
+        }
+
+ 
+
+        else
+        {
+            System.out.println ("\nThat's wrong, try again");
+            score--;
+            System.out.println ("You lost a point. Your score is now: " + score);
+
+            //doesn't allow user to continue without entering the correct answer (r variable)
+            while (ans5 != r)
+            {
+                ans5 = IBIO.inputDouble ("\nWhat is " + random1 + "^(1/2) + " + random2 + "^(1/2)?\n");
+                if (ans5 == r)
+                {
+                    score += 5;
+                    System.out.println ("\nThat's right. \nYou gained 5 point. Your total score for burger is: " + score);
+                }
+
+ 
+
+                else
+                {
+                    System.out.println ("\nThat's wrong, try again");
+                    score--;
+                    System.out.println ("You lost a point. Your score is now: " + score);
+                }
+            }
+        }
+
+        //prints prompts according to score
+        if (score > 11)
+            printSlow ("\nYou did very well!");
+        if (score > 6)
+        {
+            printSlow ("\nYou have gained enough points to receive a burger!");
+            //prints picture of a burger
+            burgerpic ();
+        }
+
+
+        else
+            System.out.println ("\nSorry, you have not gained enough points to receive a burger! >_<\n\n\n\n");
+        pause ();
+        return score;
+    }
+
+
+    //checks if a number is a prime number
+    boolean isPrime (int n)
+    {
+        for (int i = 2 ; i < n ; i++)
+        {
+            if (n % i == 0)
+                return false;
+        }
+        return true;
+    }
+
+
+    public boolean ValidDessert (double ans4, double random2)
+    {
+        if ((ans4 == (random2 / 4)))
+            return true;
+        else if (ans4 == (random2 / 8))
+            return true;
+        else if (ans4 == (random2 / 60))
+            return true;
+        else if ((ans4 == 0) && (random2 == 0))
+            return true;
+        else
+            return false;
+
+    }
+
+
+    //user picked dessert from menu (option method)
+    //asks math questions
+    //asks for integers and decimals (int and double variables)
+    //keeps track of score for this section (therefore score is reset) and returns it at the end (as an integer)
+    public int dessert (int score)
+    {
+        score = 0;
+
+        System.out.println ("\n\t\t\t\t***You picked***");
+        dessertName ();
+
+        System.out.println ("\n\nThis round is a 'piece of cake'!\n\n");
+
+        int digit = 2;
+
+
+        int ans1 = IBIO.inputInt ("What is a integer in between 1 and 1000000 and is divisible by 2?\n");
+        if (ans1 >= 1 && ans1 <= 1000000 && (ans1 % 2 == 0))
+        {
+            score++;
+            System.out.println ("\nThat's right. \nYou gained a point. Your score is now: " + score);
+        }
+
+
+        else
+        {
+            System.out.println ("\nThat's wrong, try another question.");
+            score--;
+            System.out.println ("You lost a point. Your score is now: " + score);
+        }
+
+
+        int random1 = (int) (Math.random () * 10) + 1;
+        double ans2 = IBIO.inputDouble ("\nJennie wants to buy chocolate bars. If 1 costs $0.67 in one store and $0.93 in another,\nhow much money will Jennie need to buy " + random1 + " bars (you can answer for either store)?\n");
+        if (ans2 == random1 * 0.67 || ans2 == random1 * 0.93)
+        {
+            score += 2;
+            System.out.println ("\nThat's right. \nYou gained 2 point. Your score is now: " + score);
+        }
+
+
+        else
+        {
+            System.out.println ("\nThat's wrong, try another question.");
+            score--;
+            System.out.println ("You lost a point. Your score is now: " + score);
+        }
+
+
+        int ans3 = IBIO.inputInt ("\nWhat is an odd integer below 100, an even integer over 1000 or a prime integer between 500 and 600?\n");
+        boolean p = isPrime (ans3);
+        if ((ans3 < 100 && ans3 % 2 != 0) || (ans3 > 1000 && ans3 % 2 != 1) || (p == true && ans3 > 500 && ans3 < 600))
+        {
+            score += 3;
+            System.out.println ("\nThat's right. \nYou gained 3 point. Your score is now: " + score);
+        }
+
+
+        else
+        {
+            System.out.println ("\nThat's wrong, try another question.");
+            score--;
+            System.out.println ("You lost a point. Your score is now: " + score);
+        }
+
+ 
+
+        random1 = (int) (Math.random () * 10) + 0;
+        double random2 = random1;
+        double ans4 = IBIO.inputDouble ("\nParker can walk 4 km, bike 8 km or drive 60 km in one hour.\nHow long does it take him to perform any of these tasks for " + random1 + " kilometers (in hrs)?\n");
+        if (ValidDessert (ans4, random2))
+        {
+            score += 4;
+            System.out.println ("\nThat's right. \nYou gained 4 point. Your score is now: " + score);
+        }
+
+
+        else
+        {
+            System.out.println ("\nThat's wrong, try another question.");
+            score--;
+            System.out.println ("You lost a point. Your score is now: " + score);
+        }
+
+ 
+
+ 
+
+        printSlow ("\nYou must answer this question correctly to proceed.");
+        int ans5 = IBIO.inputInt ("\nEnter a root of this question:\ny=x^2+5x+6\n");
+        if (ans5 == 2 || ans5 == 3)
+        {
+            score += 5;
+            System.out.println ("\nThat's right. \nYou gained 5 point. Your score is now: " + score);
+        }
+
+ 
+
+        else
+        {
+            System.out.println ("\nThat's wrong, try again");
+            score--;
+            System.out.println ("You lost a point. Your score is now: " + score);
+
+            //doesn't allow user to continue without entering the correct answer (2 or 3)
+            while (ans5 != 2 && ans5 != 3)
+            {
+                ans5 = IBIO.inputInt ("\nEnter a root of this question:\ny=x^2+5x+6\n");
+                if (ans5 == 2 || ans5 == 3)
+                {
+                    score += 5;
+                    System.out.println ("\nThat's right. \nYou gained 5 point. Your total score for dessert is: " + score);
+                }
+
+ 
+
+                else
+                {
+                    System.out.println ("\nThat's wrong, try again");
+                    score--;
+                    System.out.println ("You lost a point. Your score is now: " + score);
+                }
+            }
+
+        }
+
+        //prints prompts according to score
+        if (score > 11)
+            printSlow ("\nYou did very well!");
+        if (score > 6)
+        {
+            printSlow ("\nYou have gained enough points to receive a dessert!");
+            //prints picture of ice cream
+            dessertpic ();
+        }
+
+
+        else
+            System.out.println ("\nSorry, you have not gained enough points to receive a dessert! >_<\n\n\n\n");
+        pause ();
+        return score;
+
+    }
+
+
+    //user picked pizza from menu (option method)
+    //shows pictures of food
+    //asks to name them (String variable)
+    //keeps track of score for this section (therefore score is reset) and returns it at the end (as an integer)
+    public int pizza (int score)
+    {
+        score = 0;
+
+        System.out.println ("\n\t\t\t\t***You picked***");
+        pizzaName ();
+
+        System.out.println ("\n\nYou have to name the following pictures.\nI would tell you a pun about pizza, but it's just too cheesy.\n");
+
+        hotdog ();
+
+        String ans1 = IBIO.inputString ("It's a...\n");
+        if (ans1.equalsIgnoreCase ("hot dog") || ans1.equalsIgnoreCase ("hotdog"))
+        {
+            score++;
+            System.out.println ("\nThat's right. \nYou gained a point. Your score is now: " + score);
+        }
+
+
+        else
+        {
+            System.out.println ("\nThat's wrong, try another question.");
+            score--;
+            System.out.println ("You lost a point. Your score is now: " + score);
+            System.out.println ("The correct answer was hotdog.");
+        }
+
+
+        pretzel ();
+
+        String ans2 = IBIO.inputString ("It's a...\n");
+        if (ans2.equalsIgnoreCase ("pretzel"))
+        {
+            score++;
+            System.out.println ("\nThat's right. \nYou gained a point. Your score is now: " + score);
+        }
+
+
+        else
+        {
+            System.out.println ("\nThat's wrong, try another question.");
+            score--;
+            System.out.println ("You lost a point. Your score is now: " + score);
+            System.out.println ("The correct answer was pretzel.");
+        }
+
+        cheese ();
+
+        String ans3 = IBIO.inputString ("It's ...\n");
+        if (ans3.equalsIgnoreCase ("cheese"))
+        {
+            score++;
+            System.out.println ("\nThat's right. \nYou gained a point. Your score is now: " + score);
+        }
+
+
+        else
+        {
+            System.out.println ("\nThat's wrong, try another question.");
+            score--;
+            System.out.println ("You lost a point. Your score is now: " + score);
+            System.out.println ("The correct answer was cheese.");
+        }
+
+        candy ();
+
+        String ans4 = IBIO.inputString ("It's ...\n");
+        if (ans4.equalsIgnoreCase ("candy"))
+        {
+            score++;
+            System.out.println ("\nThat's right. \nYou gained a point. Your score is now: " + score);
+        }
+
+
+        else
+        {
+            System.out.println ("\nThat's wrong, try another question.");
+            score--;
+            System.out.println ("You lost a point. Your score is now: " + score);
+            System.out.println ("The correct answer was candy.");
+        }
+
+        cupcake ();
+
+        String ans5 = IBIO.inputString ("It's a...\n");
+        if (ans5.equalsIgnoreCase ("cupcake"))
+        {
+            score++;
+            System.out.println ("\nThat's right. \nYou gained a point. Your score is now: " + score);
+        }
+
+
+        else
+        {
+            System.out.println ("\nThat's wrong, try another question.");
+            score--;
+            System.out.println ("You lost a point. Your score is now: " + score);
+            System.out.println ("The correct answer was cupcake.");
+        }
+
+
+        chocolate ();
+
+        String ans6 = IBIO.inputString ("It's...\n");
+        if (ans6.equalsIgnoreCase ("chocolate") || ans6.equalsIgnoreCase ("chocolate bar"))
+        {
+            score++;
+            System.out.println ("\nThat's right. \nYou gained a point. Your score is now: " + score);
+        }
+
+
+        else
+        {
+            System.out.println ("\nThat's wrong, try another question.");
+            score--;
+            System.out.println ("You lost a point. Your score is now: " + score);
+            System.out.println ("The correct answer was chocolate.");
+        }
+
+
+        cherry ();
+
+        String ans7 = IBIO.inputString ("It's...\n");
+        if (ans7.equalsIgnoreCase ("cherries") || ans7.equalsIgnoreCase ("cherry"))
+        {
+            score++;
+            System.out.println ("\nThat's right. \nYou gained a point. Your score is now: " + score);
+        }
+
+
+        else
+        {
+            System.out.println ("\nThat's wrong, try another question.");
+            score--;
+            System.out.println ("You lost a point. Your score is now: " + score);
+            System.out.println ("The correct answer was cherries.");
+        }
+
+
+        corn ();
+
+        String ans8 = IBIO.inputString ("It's...\n");
+        if (ans8.equalsIgnoreCase ("corn"))
+        {
+            score++;
+            System.out.println ("\nThat's right. \nYou gained a point. Your score is now: " + score);
+        }
+
+
+        else
+        {
+            System.out.println ("\nThat's wrong, try another question.");
+            score--;
+            System.out.println ("You lost a point. Your score is now: " + score);
+            System.out.println ("The correct answer was corn.");
+        }
+
+
+        egg ();
+
+        String ans9 = IBIO.inputString ("It's an...\n");
+        if (ans9.equalsIgnoreCase ("egg"))
+        {
+            score++;
+            System.out.println ("\nThat's right. \nYou gained a point. Your total score for pizza is: " + score);
+        }
+
+
+        else
+        {
+            System.out.println ("\nThat's wrong, try another section.");
+            score--;
+            System.out.println ("You lost a point. Your total score for pizza is: " + score);
+            System.out.println ("The correct answer was egg.");
+        }
+
+        //prints prompts according to score
+        if (score > 6)
+            printSlow ("\nYou did very well!");
+        if (score > 5)
+        {
+            printSlow ("\nYou have gained enough points to receive a slice of pizza!");
+            //prints picture of a slice of pizza
+            pizzapic ();
+        }
+
+
+        else
+            System.out.println ("\nSorry, you have not gained enough points to receive a slice of pizza! >_<\n\n\n\n");
+        pause ();
+        return score;
+    }
+
+
+    //checks if input (ans) is correct using column number (random1) and row number (random2) in soup method
+    //returns true if correct, false if not
+    public boolean ValidSoup (int random1, int random2, int ans)
+    {
+        if (random2 == 1 && ans == (Math.pow (4, (random1 - 1))))
+            return true;
+        else if (random2 == 2 && ans == ((Math.pow (4, (random1 - 1))) * 5))
+            return true;
+        else if (random2 == 3 && ans == ((Math.pow (4, (random1 - 1))) * 25))
+            return true;
+        else if (random2 == 4 && ans == (Math.pow (4, (random1 - 1)) * 125))
+            return true;
+        else if (random2 == 5 && ans == (Math.pow (4, (random1 - 1)) * 625))
+            return true;
+        else if (random2 == 6 && ans == (Math.pow (4, (random1 - 1)) * 3125))
+            return true;
+        else
+            return false;
+
+    }
+
+
+    //user picked soup from menu (option method)
+    //asks to name numbers
+    //asks for a integer (int variable)
+    //keeps track of score for this section (therefore score is reset) and returns it at the end (as an integer)
+    public int soup (int score)
+    {
+        score = 0;
+
+        System.out.println ("\n\t\t\t ***You picked***");
+        soupName ();
+
+        System.out.println ("\n\nYou don't have to be 'soup-erman' (or 'soup-erwoman') to complete this round...\n\n\n");
+
+        multiply ();
+        int digit = 2;
+
+        //asks the same overall question, but with random numbers to change it up
+        //user names numbers in table from multiply mathod
+        for (int i = 1 ; i <= 5 ; i++)
+        {
+
+            int random1 = (int) (Math.random () * 7) + 1;
+            int random2 = (int) (Math.random () * 6) + 1;
+            int ans = IBIO.inputInt ("\nWhat is the number in column " + random1 + ", row " + random2 + "?\n");
+            if (ValidSoup (random1, random2, ans))
+            {
+                score++;
+                System.out.println ("\nThat's right. \nYou gained a point. Your total score for soup is: " + score);
+            }
+            else
+            {
+                System.out.println ("\nThat's wrong, try another question.");
+                score--;
+                System.out.println ("You lost a point. Your total score for soup is now: " + score);
+            }
+
+
+        }
+
+        //prints prompts according to score
+        if (score > 4)
+            printSlow ("\nYou did very well!");
+        if (score > 2)
+        {
+            printSlow ("\nYou have gained enough points to receive soup!");
+            //prints picture of soup
+            souppic ();
+        }
+
+
+        else
+            System.out.println ("\nSorry, you have not gained enough points to receive soup! >_<\n\n\n\n");
+        pause ();
+        return score;
+
+    }
+
+
+    //user picked hot drinks from menu (option method)
+    //asks questions about coffee
+    //asks for a word (String variable)
+    //keeps track of score for this section (therefore score is reset) and returns it at the end (as an integer)
+    public int hotDrink (int score)
+    {
+        //score is increased by 4 with every correct answer
+        //user still awarded points based on their answers' likeness to the correct answer.
+
+        score = 0;
+
+        System.out.println ("\n\t\t\t\t\t***You picked***");
+        hotDrinkName ();
+
+        System.out.println ("\n\n'Java' moment to finish this quiz?\nThanks 'a latte' for not thinking it's too silly!\n");
+
+        System.out.println ("The following are all multiple choice questions\nYour answer should be the according letter.\nThe correct answer will be awarded the full 4 points.\nIncorrect answers may be awarded points based on their likeness to the correct answer.\n");
+
+        char ans1 = IBIO.inputChar ("\nCoffee is the world's ___ most legally traded commodity. \na)\t1st\nb)\t2nd\nc)\t7th\nd)\t11th\n");
+        if (ans1 == ('b') || ans1 == ('B'))
+        {
+            score += 4;
+            System.out.println ("\nThat's right. \nYou gained 4 points. Your score is now: " + score);
+        }
+
+        else if (ans1 == ('a') || ans1 == ('A'))
+        {
+            score += 3;
+            System.out.println ("\nThat's wrong. \nYou still gained 3 points because you answer was close. Your score is now: " + score);
+            System.out.println ("The correct answer was 'b) 2nd'.");
+            System.out.println ("\nTry another question.");
+        }
+
+        else if (ans1 == ('c') || ans1 == ('C'))
+        {
+            score += 2;
+            System.out.println ("\nThat's wrong. \nYou still gained 2 points because you answer wasn't absurd. Your score is now: " + score);
+            System.out.println ("The correct answer was 'b) 2nd'.");
+            System.out.println ("\nTry another question.");
+        }
+
+        else if (ans1 == ('d') || ans1 == ('D'))
+        {
+            score += 1;
+            System.out.println ("\nThat's wrong. \nYou still gained 1 points because you answer was an option. Your score is now: " + score);
+            System.out.println ("The correct answer was 'b) 2nd'.");
+            System.out.println ("\nTry another question.");
+        }
+
+        else
+        {
+            //Show an error dialog that displays the message, 'That's NOT EVEN AN OPTION!':
+            JOptionPane.showMessageDialog (null, "That's NOT EVEN AN OPTION!", "Alert",
+                    JOptionPane.ERROR_MESSAGE);
+            score--;
+            System.out.println ("You lost a point. Your score is now: " + score);
+            System.out.println ("The correct answer was 'b) 2nd'.");
+            System.out.println ("\nTry another question.");
+        }
+
+
+        char ans2 = IBIO.inputChar ("\nCoffee is sometimes known as a ___ of ___. \na)\tmug, caff\nb)\tshot, brewery\nc)\tglass, cap\nd)\tcup, joe\n");
+        if (ans2 == ('d') || ans2 == ('D'))
+        {
+            score += 4;
+            System.out.println ("\nThat's right. \nYou gained 4 points. Your score is now: " + score);
+        }
+
+        else if (ans2 == ('a') || ans2 == ('A'))
+        {
+            score += 3;
+            System.out.println ("\nThat's wrong. \nYou still gained 3 points because you answer was close. Your score is now: " + score);
+            System.out.println ("The correct answer was 'd) cup, joe'.");
+            System.out.println ("\nTry another question.");
+        }
+
+        else if (ans2 == ('c') || ans2 == ('C'))
+        {
+            score += 2;
+            System.out.println ("\nThat's wrong. \nYou still gained 2 points because you answer wasn't absurd. Your score is now: " + score);
+            System.out.println ("The correct answer was 'd) cup, joe'.");
+            System.out.println ("\nTry another question.");
+        }
+
+        else if (ans2 == ('b') || ans2 == ('B'))
+        {
+            score += 1;
+            System.out.println ("\nThat's wrong. \nYou still gained 1 points because you answer was an option. Your score is now: " + score);
+            System.out.println ("The correct answer was 'd) cup, joe'.");
+            System.out.println ("\nTry another question.");
+        }
+
+        else
+        {
+            JOptionPane.showMessageDialog (null, "That's NOT EVEN AN OPTION!", "Alert",
+                    JOptionPane.ERROR_MESSAGE);
+            score--;
+            System.out.println ("You lost a point. Your score is now: " + score);
+            System.out.println ("The correct answer was 'd) cup, joe'.");
+            System.out.println ("\nTry another question.");
+        }
+
+
+        char ans3 = IBIO.inputChar ("\n___ is the Italian word for milk. So if you request a ____ in Italy, you'll be served a glass of milk. \na)\tespresso\nb)\tlatte\nc)\tcreme\nd)\tcaffe\n\n");
+        if (ans3 == ('b') || ans3 == ('B'))
+        {
+            score += 4;
+            System.out.println ("\nThat's right. \nYou gained 4 points. Your score is now: " + score);
+        }
+
+        else if (ans3 == ('c') || ans3 == ('C'))
+        {
+            score += 3;
+            System.out.println ("\nThat's wrong. \nYou still gained 3 points because you answer was close. Your score is now: " + score);
+            System.out.println ("The correct answer was 'b) latte'.");
+            System.out.println ("\nTry another question.");
+        }
+
+        else if (ans3 == ('a') || ans3 == ('A'))
+        {
+            score += 2;
+            System.out.println ("\nThat's wrong. \nYou still gained 2 points because you answer wasn't absurd. Your score is now: " + score);
+            System.out.println ("The correct answer was 'b) latte'.");
+            System.out.println ("\nTry another question.");
+        }
+
+        else if (ans3 == ('d') || ans3 == ('D'))
+        {
+            score += 1;
+            System.out.println ("\nThat's wrong. \nYou still gained 1 points because you answer was an option. Your score is now: " + score);
+            System.out.println ("The correct answer was 'b) latte'.");
+            System.out.println ("\nTry another question.");
+        }
+
+        else
+        {
+            JOptionPane.showMessageDialog (null, "That's NOT EVEN AN OPTION!", "Alert",
+                    JOptionPane.ERROR_MESSAGE);
+            score--;
+            System.out.println ("You lost a point. Your score is now: " + score);
+            System.out.println ("The correct answer was 'b) latte'.");
+            System.out.println ("\nTry another question.");
+        }
+
+ 
+
+
+        char ans4 = IBIO.inputChar ("\n___ is the largest Starbucks cup size. \na)\ttall\t\nb)\tgrandisimo\nc)\tventi\nd)\tlarge\n");
+        if (ans4 == ('c') || ans4 == ('C'))
+        {
+            score += 4;
+            System.out.println ("\nThat's right. \nYou gained 4 point. Your score is now: " + score);
+        }
+
+        else if (ans4 == ('b') || ans4 == ('B'))
+        {
+            score += 3;
+            System.out.println ("\nThat's wrong. \nYou still gained 3 points because you answer was close. Your score is now: " + score);
+            System.out.println ("The correct answer was 'c) venti'.");
+            System.out.println ("\nTry another question.");
+        }
+
+        else if (ans4 == ('a') || ans4 == ('A'))
+        {
+            score += 2;
+            System.out.println ("\nThat's wrong. \nYou still gained 2 points because you answer wasn't absurd. Your score is now: " + score);
+            System.out.println ("The correct answer was 'c) venti'.");
+            System.out.println ("\nTry another question.");
+        }
+
+        else if (ans4 == ('d') || ans4 == ('D'))
+        {
+            score += 1;
+            System.out.println ("\nThat's wrong. \nYou still gained 1 points because you answer was an option. Your score is now: " + score);
+            System.out.println ("The correct answer was 'c) venti'.");
+            System.out.println ("\nTry another question.");
+        }
+
+        else
+        {
+            JOptionPane.showMessageDialog (null, "That's NOT EVEN AN OPTION!", "Alert",
+                    JOptionPane.ERROR_MESSAGE);
+            score--;
+            System.out.println ("You lost a point. Your score is now: " + score);
+            System.out.println ("The correct answer was 'c) venti'.");
+            System.out.println ("\nTry another question.");
+        }
+
+ 
+
+        char ans5 = IBIO.inputChar ("\n____ is the largest coffee producer in the world today. \na)\tBrazil\nb)\tColombia\nc)\tIndia\nd)\tEthiopia\n");
+        if (ans5 == ('a') || ans5 == ('A'))
+        {
+            score += 4;
+            System.out.println ("\nThat's right. \nYou gained 4 point. Your total score for hot drinks is: " + score);
+        }
+
+        else if (ans5 == ('b') || ans5 == ('B'))
+        {
+            score += 3;
+            System.out.println ("\nThat's wrong. \nYou still gained 3 points because you answer was close. Your score is now: " + score);
+            System.out.println ("The correct answer was 'a) Brazil'.");
+            System.out.println ("\nTry another question.");
+        }
+
+        else if (ans5 == ('d') || ans5 == ('D'))
+        {
+            score += 2;
+            System.out.println ("\nThat's wrong. \nYou still gained 2 points because you answer wasn't absurd. Your score is now: " + score);
+            System.out.println ("The correct answer was 'a) Brazil'.");
+            System.out.println ("\nTry another question.");
+        }
+
+        else if (ans5 == ('c') || ans5 == ('C'))
+        {
+            score += 1;
+            System.out.println ("\nThat's wrong. \nYou still gained 1 points because you answer was an option. Your score is now: " + score);
+            System.out.println ("The correct answer was 'a) Brazil'.");
+            System.out.println ("\nTry another question.");
+        }
+
+        else
+        {
+            JOptionPane.showMessageDialog (null, "That's NOT EVEN AN OPTION!", "Alert",
+                    JOptionPane.ERROR_MESSAGE);
+            score--;
+            System.out.println ("You lost a point. Your score is now: " + score);
+            System.out.println ("The correct answer was 'a) Brazil'.");
+            System.out.println ("\nTry another section.");
+        }
+
+
+        //prints prompts according to score
+        if (score > 16)
+            printSlow ("\nYou did very well!");
+        if (score > 10)
+        {
+            printSlow ("\nYou have gained enough points to receive a hot drink!");
+            //prints picture of coffee
+            hotDrinkpic ();
+        }
+
+
+        else
+            System.out.println ("\nSorry, you have not gained enough points to receive a hot drink! >_<\n\n\n\n");
+        pause ();
+        return score;
+
+    }
+
+
+    //ASCII picture from http://www.retrojunkie.com/asciiart/food/burgers.htm (editted - burger cut out and end of straw changed)
+    public void coldDrinkpic ()
+    {
+
+        System.out.println ("    ");
+        System.out.println ("               _       ");
+        System.out.println ("         \\ .-':::.  ");
+        System.out.println ("          \\ :::::|\\    ");
+        System.out.println ("         |,\\:::'/  \\");
+        System.out.println ("         `.:::-'    \\");
+        System.out.println ("           `-.       \\         ");
+        System.out.println ("              `-.     |     ");
+        System.out.println ("                 `-.-'    ");
+        System.out.println ("                      ");
+        System.out.println ("");
+
+
+    }
+
+
+    //ASCII picture from http://www.retrojunkie.com/asciiart/food/icecream.htm
+    public void dessertpic ()
+    {
+        System.out.println ("  ");
+        System.out.println ("       ()");
+        System.out.println ("      (__)");
+        System.out.println ("     (____)");
+        System.out.println ("    (______)");
+        System.out.println ("   (________)");
+        System.out.println ("  (__________)");
+        System.out.println ("   \\/\\/\\/\\/\\/");
+        System.out.println ("    \\/\\/\\/\\/");
+        System.out.println ("     \\/\\/\\/");
+        System.out.println ("      \\/\\/");
+        System.out.println ("       \\/");
+        System.out.println ("");
+        System.out.println ("");
+        System.out.println ("");
+
+    }
+
+
+    //ASCII picture from http://www.retrojunkie.com/asciiart/food/burgers.htm (editted - made smaller)
+    public void burgerpic ()
+    {
+        System.out.println ("");
+        System.out.println ("   _.-\", ,' .'.`. .  \"-._");
+        System.out.println (" .'. `    .      .  ' '  `.");
+        System.out.println (".`________________________'.");
+        System.out.println ("$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+        System.out.println ("`\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"'");
+        System.out.println (" `________________________' ");
+        System.out.println ("");
+        System.out.println ("");
+        System.out.println (" ");
+        System.out.println ("");
+
+    }
+
+
+    //ASCII picture from http://www.retrojunkie.com/asciiart/food/burgers.htm (editted - burger cut out)
+    public void friespic ()
+    {
+        System.out.println (" ");
+        System.out.println ("        |\\ /| /|_/|");
+        System.out.println ("      |\\||-|\\||-/|/|");
+        System.out.println ("       \\\\|\\|//||///");
+        System.out.println ("       |\\/\\||//||||");
+        System.out.println ("       |||\\\\|/\\\\ ||");
+        System.out.println ("       | './\\_/.' |");
+        System.out.println ("       |          |");
+        System.out.println ("       |          |");
+        System.out.println ("       |          |");
+        System.out.println ("        '.______.'");
+        System.out.println ("");
+        System.out.println ("        ");
+        System.out.println ("        ");
+        System.out.println ("");
+        System.out.println ("  ");
+
+    }
+
+
+    //ASCII picture from http://www.retrojunkie.com/asciiart/food/sandwich.htm
+    public void sandwichpic ()
+    {
+        System.out.println ("                _.---._");
+        System.out.println ("            _.-~       ~-._");
+        System.out.println ("        _.-~               ~-._");
+        System.out.println ("    _.-~                       ~---._");
+        System.out.println ("    _.-~                                 ~\\");
+        System.out.println (" .-~                                    _.;");
+        System.out.println (" :-._                               _.-~ ./");
+        System.out.println (" }-._~-._                   _..__.-~ _.-~)");
+        System.out.println (" `-._~-._~-._              / .__..--~_.-~");
+        System.out.println ("     ~-._~-._\\.        _.-~_/ _..--~~");
+        System.out.println ("     ~-. \\`--...--~_.-~/~~");
+        System.out.println ("        \\.`--...--~_.-~");
+        System.out.println ("          ~-..----~");
+        System.out.println ("");
+        System.out.println ("");
+    }
+
+
+    //ASCII picture from http://www.retrojunkie.com/asciiart/food/pizza.htm (editted - rest of pizza cut out)
+    public void pizzapic ()
+    {
+
+        System.out.println ("");
+        System.out.println ("                                     __       ");
+        System.out.println ("                            __..---'' .'   ");
+        System.out.println ("                  __,..--'''    _  \" ,    ");
+        System.out.println ("         __..---''     ,   \"   (O)  ,    ");
+        System.out.println (" ,..--'''    .   *  ~   ||   *    ~     ");
+        System.out.println ("|  | ,   (@)   \"      \" ||   .-.   '   ");
+        System.out.println ("'  '   \"    ~ .   .--.  |j  :   : /   ");
+        System.out.println (" .  `    _____   `.   `      .__,/   ");
+        System.out.println ("  `  `.  ----- * .'`, ;   \"     /   ");
+        System.out.println ("   `.  .  ~       `\" `  *   ~  /   ");
+        System.out.println ("     .  `  , (c)     '  .     /   ");
+        System.out.println ("      `.  .        *  .  (C) /   ");
+        System.out.println ("        .  `.   \"    // .   /    ");
+        System.out.println ("         `.  `.   , //     /    ");
+        System.out.println ("           `._  `.    . \" /    ");
+        System.out.println ("              `.  `-._   /        ");
+        System.out.println ("                `-._  ` ,                  ");
+        System.out.println ("                    `-.'");
+    }
+
+
+    //ASCII picture from http://www.geocities.com/spunk1111/food.htm (it's called bowl and spoon)
+    public void souppic ()
+    {
+        System.out.println ("");
+        System.out.println ("               (");
+        System.out.println ("            )    )");
+        System.out.println ("         _.(--\"(\"\"\"--.._");
+        System.out.println ("        /, _..-----).._,\\");
+        System.out.println ("       |  `'''-----'''`  |");
+        System.out.println ("        \\               /");
+        System.out.println ("         '.           .'");
+        System.out.println ("           '--.....--'");
+        System.out.println ("");
+        System.out.println ("");
+        System.out.println ("          ___           .-\"\"-.");
+        System.out.println ("         /   '''---...-'.'  `\\\\");
+        System.out.println ("         \\___...---\"\"\"-._-.__//");
+        System.out.println ("                         '---'");
+    }
+
+
+    //ASCII picture from http://www.retrojunkie.com/asciiart/food/coffee.htm (editted - smoke reduced and picture on mug removed)
+    public void hotDrinkpic ()
+    {
+        System.out.println ("");
+        System.out.println ("         {");
+        System.out.println ("      {   }");
+        System.out.println ("       }_{ __{");
+        System.out.println ("    .-{   }   }-.");
+        System.out.println ("   (   }     {   )");
+        System.out.println ("   |`-.._____..-'|");
+        System.out.println ("   |             ;--.");
+        System.out.println ("   |            (__  \\");
+        System.out.println ("   |             | )  )");
+        System.out.println ("   |             |/  /");
+        System.out.println ("   |             /  /    ");
+        System.out.println ("   |            (  /");
+        System.out.println ("   \\             y'");
+        System.out.println ("    `-.._____..-'");
+        System.out.println ("");
+        System.out.println (" ");
+        System.out.println ("");
+    }
+
+
+    //ASCII picture from http://ascii.co.uk/art/hotdog (editted)
+    public void hotdog ()
+    {
+        System.out.println ("         _ .------------. _   ");
+        System.out.println ("        (_(              )_) ");
+        System.out.println ("           '------------' ");
+        System.out.println ("");
+    }
+
+
+    //ASCII picture from http://www.retrojunkie.com/asciiart/food/eggs.htm
+    public void egg ()
+    {
+        System.out.println ("");
+        System.out.println ("    ,'\"`.");
+        System.out.println ("   /     \\");
+        System.out.println ("  :       :");
+        System.out.println ("  :       :");
+        System.out.println ("   `.___,' ");
+        System.out.println ("");
+        System.out.println ("");
+    }
+
+
+    //ASCII picture from http://www.retrojunkie.com/asciiart/food/corn.htm
+    public void corn ()
+    {
+        System.out.println ("              ");
+        System.out.println ("                                   .-'\"`/\\");
+        System.out.println ("                                  // /' /\\`\\");
+        System.out.println ("                                ('//.-'/`-.;");
+        System.out.println ("                                 \\ \\ / /-.");
+        System.out.println ("              __.__.___..__._.___.\\\\ \\\\----,_");
+        System.out.println ("           .:{@&#,&#@&,@&#&&,#&@#&@&\\\\` \\-. .-'-.");
+        System.out.println ("        .:{@#@,#@&#,@#&&#,@&#&@&,&@#&&\\\\, -._,\"- \\");
+        System.out.println ("      .{#@#&@#@#&#&@&#@#@&#,@#@#&@&&#@#\\ \\// = \\`=\\__");
+        System.out.println ("      `{#@,@#&@&,@&#@,#@&#@#&@#&@,&#@,#/\\/ =`-. -_=__");
+        System.out.println ("        `:{@#&@&#@&#@&#@,#&&#@&,@#/.'  / / \"/.-', /");
+        System.out.println ("           `:{@#&,#&@#,@&#&@&,@&#/.-// //-'-_= \",/");
+        System.out.println ("              `~`~~`~~~`~`~`~~`~( / , /__,___.-\"");
+        System.out.println ("                                 \\ \\\\/");
+        System.out.println ("                                  `\\\\\\'");
+        System.out.println ("              ");
+    }
+
+
+    //ASCII picture from http://www.retrojunkie.com/asciiart/food/cherries.htm
+    public void cherry ()
+    {
+        System.out.println ("");
+        System.out.println ("          ");
+        System.out.println ("   __.--~~.,-.__");
+        System.out.println ("   `~-._.-(`-.__`-.");
+        System.out.println ("           \\    `~~`");
+        System.out.println ("      .--./ \\");
+        System.out.println ("     /#   \\  \\.--.");
+        System.out.println ("     \\    /  /#   \\");
+        System.out.println ("      '--'   \\    /");
+        System.out.println ("              '--'");
+        System.out.println ("");
+    }
+
+
+    //ASCII picture from http://www.retrojunkie.com/asciiart/food/chocolat.htm (editted - "LATE" removed from wrapper)
+    public void chocolate ()
+    {
+        System.out.println ("     ");
+        System.out.println ("     __________________,.............,");
+        System.out.println ("    /_/_/_/_/_/_/_/_/,-             /|");
+        System.out.println ("   /_/_/_/_/_/_/_/,-               / /");
+        System.out.println ("  /_/_/_/_/_/_/,-                 / /");
+        System.out.println (" /_/_/_/_/_/_,:................../ /");
+        System.out.println (" |________,'                     |/");
+        System.out.println ("          \"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"'");
+        System.out.println ("");
+    }
+
+
+    //ASCII picture from http://www.retrojunkie.com/asciiart/food/candy.htm
+    public void candy ()
+    {
+        System.out.println ("");
+        System.out.println ("       ___      .-\"\"-.      ___");
+        System.out.println ("       \\  \"-.  /      \\  .-\"  /");
+        System.out.println ("        > -=.\\/        \\/.=- <");
+        System.out.println ("        > -='/\\        /\\'=- <");
+        System.out.println ("       /__.-'  \\      /  '-.__\\");
+        System.out.println ("                '-..-'  ");
+        System.out.println ("                      ");
+    }
+
+
+    //ASCII picture from http://www.retrojunkie.com/asciiart/food/cupcakes.htm
+    public void cupcake ()
+    {
+        System.out.println ("                ");
+        System.out.println ("           )");
+        System.out.println ("          (.)");
+        System.out.println ("          .|.");
+        System.out.println ("          | |");
+        System.out.println ("      _.--| |--._");
+        System.out.println ("   .-';  ;`-'& ; `&.");
+        System.out.println ("  & &  ;  &   ; ;   \\");
+        System.out.println ("  \\      ;    &   &_/");
+        System.out.println ("   F\"\"\"---...---\"\"\"J");
+        System.out.println ("   | | | | | | | | |");
+        System.out.println ("   J | | | | | | | F");
+        System.out.println ("    `---.|.|.|.---'");
+        System.out.println ("");
+    }
+
+
+    //ASCII picture from http://www.retrojunkie.com/asciiart/food/pretzels.htm
+    public void pretzel ()
+    {
+        System.out.println ("           ");
+        System.out.println ("           ");
+        System.out.println ("                __       __");
+        System.out.println ("              .'  `'._.'`  '.");
+        System.out.println ("             |  .--;   ;--.  |");
+        System.out.println ("             |  (  /   \\  )  |");
+        System.out.println ("              \\  ;` /^\\ `;  /");
+        System.out.println ("               :` .'._.'. `;");
+        System.out.println ("               '-`'.___.'`-'");
+        System.out.println ("");
+        System.out.println ("               ");
+    }
+
+
+    //ASCII picture from http://www.retrojunkie.com/asciiart/food/cheese.htm
+    public void cheese ()
+    {
+        System.out.println ("               ");
+        System.out.println ("         _--\"-.");
+        System.out.println ("      .-\"      \"-.");
+        System.out.println ("     |\"\"--..      '-.");
+        System.out.println ("     |      \"\"--..   '-.");
+        System.out.println ("     |.-. .-\".    \"\"--..\".");
+        System.out.println ("     |'./  -_'  .-.      |");
+        System.out.println ("     |      .-. '.-'   .-'");
+        System.out.println ("     '--..  '.'    .-  -.");
+        System.out.println ("          \"\"--..   '_'   :");
+        System.out.println ("                \"\"--..   |");
+        System.out.println ("                      \"\"-' ");
+        System.out.println ("");
+    }
+
+
+    public void coldDrinksName ()
+    {
+        System.out.println ("\t  ___  _____  __    ____     ____  ____  ____  _  _  _  _  ___   /\\");
+        System.out.println ("\t / __)(  _  )(  )  (  _ \\   (  _ \\(  _ \\(_  _)( \\( )( )/ )/ __)  )(");
+        System.out.println ("\t( (__  )(_)(  )(__  )(_) )   )(_) ))   / _)(_  )  (  )  ( \\__ \\  \\/");
+        System.out.println ("\t \\___)(_____)(____)(____/   (____/(_)\\_)(____)(_)\\_)(_)\\_)(___/  () ");
+    }
+
+
+    public void friesName ()
+    {
+        System.out.println ("\t\t _____ ____   ____    ___ _____     __ ");
+        System.out.println ("\t\t|     |    \\ l    j  /  _] ___/    |  T");
+        System.out.println ("\t\t|   __j| D  ) |  |  /   [ (   \\    |  |");
+        System.out.println ("\t\t|  l_ |    /  |  | Y    _]__\\ T    |__j");
+        System.out.println ("\t\t|   _]|    \\  |  | |   [_/  \\ |     __ ");
+        System.out.println ("\t\t|  T  |  .  Y j  l |     T\\   |    |  T");
+        System.out.println ("\t\tl__j  l__j\\_j|____jl_____j\\___j    l__j");
+    }
+
+
+    public void sandwichName ()
+    {
+        System.out.println ("\t\t __                 _          _      _         _ ");
+        System.out.println ("\t\t/ _\\ __ _ _ __   __| |_      ___) ___| |__     / \\");
+        System.out.println ("\t\t\\ \\ / _` | '_ \\ / _` \\ \\ /\\ / / |/ __| '_ \\   /  /");
+        System.out.println ("\t\t_\\ \\ (_| | | | | (_| |\\ V  V /| | (__| | | | /\\_/ ");
+        System.out.println ("\t\t\\__/\\__,_|_| |_|\\__,_| \\_/\\_/ |_|\\___|_| |_| \\/   ");
+    }
+
+
+    public void burgerName ()
+    {
+        System.out.println ("\t\to.oOOOo.                                   oO ");
+        System.out.println ("\t\t o     o                                   OO ");
+        System.out.println ("\t\t O     O                                   oO ");
+        System.out.println ("\t\t oOooOO.                                   Oo ");
+        System.out.println ("\t\t o     `O O   o  `OoOo. .oOoO .oOo. `OoOo. oO ");
+        System.out.println ("\t\t O      o o   O   o     o   O OooO'  o        ");
+        System.out.println ("\t\t o     .O O   o   O     O   o O      O     Oo ");
+        System.out.println ("\t\t `OooOO'  `OoO'o  o     `OoOo `OoO'  o     oO ");
+        System.out.println ("\t\t                            O                 ");
+        System.out.println ("\t\t                         OoO'           ");
+    }
+
+
+    public void dessertName ()
+    {
+        System.out.println ("\t\t ######                                           ### ");
+        System.out.println ("\t\t #     # ######  ####   ####  ###### #####  ##### ### ");
+        System.out.println ("\t\t #     # #      #      #      #      #    #   #   ### ");
+        System.out.println ("\t\t #     # #####   ####   ####  #####  #    #   #    #  ");
+        System.out.println ("\t\t #     # #           #      # #      #####    #       ");
+        System.out.println ("\t\t #     # #      #    # #    # #      #   #    #   ### ");
+        System.out.println ("\t\t ######  ######  ####   ####  ###### #    #   #   ### ");
+    }
+
+
+    public void pizzaName ()
+    {
+        System.out.println ("\t\t\t   _   _   _   _   _   _  ");
+        System.out.println ("\t\t\t  / \\ / \\ / \\ / \\ / \\ / \\ ");
+        System.out.println ("\t\t\t ( P ) I ) Z ) Z ) A ) ! )");
+        System.out.println ("\t\t\t  \\_/ \\_/ \\_/ \\_/ \\_/ \\_/ ");
+    }
+
+
+    public void soupName ()
+    {
+        System.out.println ("\t\t\t                   __ ");
+        System.out.println ("\t\t\t _____            |  |");
+        System.out.println ("\t\t\t|   __|___ _ _ ___|  |");
+        System.out.println ("\t\t\t|__   | . | | | . |__|");
+        System.out.println ("\t\t\t|_____|___|___|  _|__|");
+        System.out.println ("\t\t\t              |_|     ");
+    }
+
+
+    public void hotDrinkName ()
+    {
+        System.out.println ("\t     .'(     .-./(  .-,.-.,-.      )\\.-.     /`-.  .'(   )\\  )\\      .'(    )\\.--.  .`(   ");
+        System.out.println ("\t ,') \\  )  ,'     ) ) ,, ,. (    ,'     )  ,' _  \\ \\  ) (  \\, /   ,')\\  )  (   ._.' \\_ )  ");
+        System.out.println ("\t(  '-' (  (  .-, (  \\( |(  )/   (  .-, (  (  '-' ( ) (   ) \\ (   (  '/ /    `-.`.     )\\  ");
+        System.out.println ("\t ) .-.  )  ) '._\\ )    ) \\       ) '._\\ )  ) ,_ .' \\  ) ( ( \\ \\   )   (    ,_ (  \\    \\(  ");
+        System.out.println ("\t(  ,  ) \\ (  ,   (     \\ (      (  ,   (  (  ' ) \\  ) \\  `.)/  ) (  .\\ \\  (  '.)  )    _  ");
+        System.out.println ("\t )/    )/  )/ ._.'      )/       )/ ._.'   )/   )/   )/     '.(   )/  )/   '._,_.'    `.");
+    }
+}
+
